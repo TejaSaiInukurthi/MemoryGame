@@ -2,16 +2,16 @@
  * Create a list that holds all of your cards
  */
 
- var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
- var count = 0;
- //array to store inner html of  cards.
- var open = [];
- //array  to store cards.
- var card = [];
- //moves variable to store moves count.
- var moves = 0;
- // totalcount variable to check all card pairs matched or not.
- var totalcount = 0;
+var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+//array to store inner html of  cards.
+var open = [];
+//array  to store cards.
+var card = [];
+//moves variable to store moves count.
+var moves = 0;
+// totalcount variable to check all card pairs matched or not.
+var totalcount = 0;
+
 
 /*
  * Display the cards on the page
@@ -32,17 +32,18 @@ shuffle(cards).map(i => {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length,
+    temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
 
 
@@ -57,7 +58,7 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-
+let timerStart = false;
 //adding Event listener for the cards.
 cards.map(x => {
   x.addEventListener("click", displayCards);
@@ -65,22 +66,48 @@ cards.map(x => {
 
 //displayCards function to display the cards when clicked.
 function displayCards() {
+  if (timerStart == false) {
+    timerStart = true;
+    //calling timer function.
+    timer();
+  }
   // check the card such that it do not contain class name "open".
-  if (!this.classList.contains("open") && count < 2) {
+  if (!this.classList.contains("open") && open.length < 2) {
     this.classList.add("open", "show", "disabled");
     open.push(this.innerHTML);
     card.push(this);
-    count++;
     moves++;
+    movecounter();
     if (open.length == 2) {
       setTimeout(function() {
         matched(this);
       }, 250);
-      count = 0;
     }
   }
 }
 
+//timer function to display timer on the screen.
+var time = document.getElementById('time');
+var hours = 0,
+  mins = 0,
+  secs = 0;
+var interval;
+
+function timer() {
+  interval = setInterval(function() {
+    secs++;
+    if (secs == 60) {
+      mins++;
+      secs = 0;
+    }
+    if (mins == 60) {
+      hours++;
+      mins = 0;
+    }
+    time.innerHTML = mins + " m : " + secs + " s";
+
+  }, 1000);
+}
 
 
 // matched function to check whether cards are matched or not
@@ -88,7 +115,7 @@ function matched(x) {
   //if cards are not matched remove class "open" and "show" from both cards.
   if (!(open[0] == open[1])) {
     card.map(x => {
-      x.classList.remove("open", "show")
+      x.classList.remove("open", "show", "disabled")
     });
     open.pop();
     open.pop();
@@ -106,7 +133,20 @@ function matched(x) {
     card.pop();
     //if totalcount = 8 which means all card pairs are matched display sweetalert you have won
     if (totalcount == 8) {
+      clearInterval(interval);
       alert("you have won the game");
     }
   }
 }
+
+// move counter functions to decrease stars on increase in the moves
+function movecounter() {
+  var move = document.querySelector('.moves')
+  move.innerHTML = moves;
+}
+
+// adding functionality to repeat button
+var repeat = document.querySelector('.fa-repeat');
+repeat.addEventListener("click", function() {
+  window.location.reload();
+});
