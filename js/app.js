@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /*
  * Create a list that holds all of your cards
  */
@@ -83,7 +83,7 @@ function displayCards() {
     if (open.length == 2) {
       setTimeout(function() {
         matched(this);
-      }, 250);
+      }, 350);
     }
   }
 }
@@ -135,7 +135,7 @@ function matched(x) {
     //if totalcount = 8 which means all card pairs are matched display sweetalert you have won
     if (totalcount == 8) {
       clearInterval(interval);
-      counter = document.querySelector('#time');
+      var counter = document.querySelector('#time');
       swal({
           title: "Congratulations",
           html: "You have won the game! <br> MOVES: &nbsp" + moves + "<br> STARS: &nbsp" + starcount + '<i class="fa fa-star"></i>' + "<br> Time: &nbsp" + time.innerHTML,
