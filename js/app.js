@@ -1,3 +1,4 @@
+'use strict';
 /*
  * Create a list that holds all of your cards
  */
