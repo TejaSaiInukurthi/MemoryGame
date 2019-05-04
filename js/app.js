@@ -83,7 +83,7 @@ function displayCards() {
     if (open.length == 2) {
       setTimeout(function() {
         matched(this);
-      }, 350);
+      }, 250);
     }
   }
 }
