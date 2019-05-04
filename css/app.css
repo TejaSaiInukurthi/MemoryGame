@@ -81,7 +81,7 @@ h1 {
   font-size: 33px;
 }
 
-.disabled{
+.disabled {
   pointer-events: none;
 }
 
@@ -126,26 +126,26 @@ h1 {
 
 /* ============== media queries for mobile devices and tablets ===============*/
 @media (min-device-width:320px) and (max-device-width:780px) {
-  .deck{
-    width: 85%;
-    height: 800px;
+  .deck {
+    width: 100%;
+    height: 1000px;
   }
 
   .deck .card {
-    height: 160px;
-    width: 160px;
+    height: 210px;
+    width: 210px;
   }
 }
 
 /* ============== media queries for ipad pro view ===============*/
 @media (min-device-width:781px) and (max-device-width:1025px) {
-  .deck{
+  .deck {
     width: 85%;
-    height: 900px;
+    height: 850px;
   }
 
   .deck .card {
-    height: 175px;
-    width: 175px;
+    height: 180px;
+    width: 180px;
   }
 }
