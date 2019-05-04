@@ -11,7 +11,10 @@ var card = [];
 var moves = 0;
 // totalcount variable to check all card pairs matched or not.
 var totalcount = 0;
-
+// array to hold stars.
+var stars = Array.prototype.slice.call(document.querySelectorAll(".fa-star"));
+// starcount variable to store count of stars remaining.
+var starcount = 3;
 
 /*
  * Display the cards on the page
@@ -27,8 +30,6 @@ shuffle(cards).map(i => {
     deck.appendChild(x);
   });
 });
-
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -81,7 +82,7 @@ function displayCards() {
     if (open.length == 2) {
       setTimeout(function() {
         matched(this);
-      }, 250);
+      }, 350);
     }
   }
 }
@@ -109,7 +110,6 @@ function timer() {
   }, 1000);
 }
 
-
 // matched function to check whether cards are matched or not
 function matched(x) {
   //if cards are not matched remove class "open" and "show" from both cards.
@@ -134,7 +134,17 @@ function matched(x) {
     //if totalcount = 8 which means all card pairs are matched display sweetalert you have won
     if (totalcount == 8) {
       clearInterval(interval);
-      alert("you have won the game");
+      counter = document.querySelector('#time');
+      swal({
+          title: "Congratulations",
+          html: "You have won the game! <br> MOVES: &nbsp" + moves + "<br> STARS: &nbsp" + starcount + '<i class="fa fa-star"></i>' + "<br> Time: &nbsp" + time.innerHTML,
+          confirmButtonText: "Play Again"
+        },
+
+      ).then(function() {
+        //this function reloads the page when you click "Play Again" button in the sweet alert
+        location.reload();
+      });
     }
   }
 }
@@ -143,6 +153,16 @@ function matched(x) {
 function movecounter() {
   var move = document.querySelector('.moves')
   move.innerHTML = moves;
+  //if moves greater than 20 we remove a star
+  if (moves > 23 && starcount == 3) {
+    stars[starcount - 1].classList.add("fa-star-o");
+    starcount--;
+  }
+  //if moves greater than 35 we remove another star
+  if (moves > 40 && starcount == 2) {
+    stars[starcount - 1].classList.add("fa-star-o");
+    starcount--;
+  }
 }
 
 // adding functionality to repeat button
