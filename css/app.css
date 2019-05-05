@@ -125,27 +125,79 @@ h1 {
 }
 
 /* ============== media queries for mobile devices and tablets ===============*/
-@media (min-device-width:320px) and (max-device-width:780px) {
+@media (min-device-width:320px) and (max-device-width:420px) {
   .deck {
     width: 95%;
-    height: 1000px;
+    min-height: 400px;
+    margin: 0;
+    padding: 10px;
   }
 
   .deck .card {
-    height: 210px;
-    width: 210px;
+    height: 90px;;
+    width: 24%;
   }
 }
 
-/* ============== media queries for ipad pro view ===============*/
-@media (min-device-width:781px) and (max-device-width:1025px) {
+/* ============== media queries for mobile devices and tablets ===============*/
+@media (min-device-width:421px) and (max-device-width:687px) {
   .deck {
-    width: 85%;
-    height: 850px;
+    width: 95%;
+    min-height: 600px;
+    margin: 0;
+    padding: 10px;
   }
 
   .deck .card {
-    height: 180px;
+    height: 130px;
+    width: 24%;
+  }
+}
+/* ============== media queries for ipad pro view ===============*/
+@media (min-device-width:688px) and (max-device-width:740px) {
+  .deck {
+    width: 85%;
+    height: 650px; 
+    margin: 0;
+    padding: 15px;
+
+  }
+
+  .deck .card {
+    height: 250px
+    width: 24%px;
+  }
+}
+
+/* ============== media queries for ipad view ===============*/
+@media (min-device-width:741px) and (max-device-width:880px) {
+  .deck {
+    width: 85%;
+    height: 730px; 
+    margin: 0;
+    padding: 25px;
+
+  }
+
+  .deck .card {
+    height: 150px;
+    width: 24%;
+  }
+}
+
+/* ============== media queries for ipad view ===============*/
+@media (min-device-width:881px) and (max-device-width:1200px) {
+  .deck {
+    width: 900px;;
+    height: 1000px; 
+    margin: 0;
+    padding: 25px;
+
+  }
+
+  .deck .card {
+    height: 200px;
     width: 180px;
   }
 }
+
