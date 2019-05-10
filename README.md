@@ -67,3 +67,6 @@ ________
 +   I have added functionality to repeat button by adding the event listener to it. when clicked it reloads the page.
 
 +   I have added a `timer()` function to display the game time on the page. whenever all cards are matched timer has to stop.
+
+
+  Here's the link of the game (https://tejasaiinukurthi.github.io/MemoryGame/)
